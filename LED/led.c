@@ -1,10 +1,10 @@
 #include "led.h"
 
-/* ¶¨ÒåÏß³Ì¿ØÖÆ¿é */
+/* å®šä¹‰çº¿ç¨‹æ§åˆ¶å— */
 rt_thread_t led0_thread;
 rt_thread_t led1_thread;
 
-/* ¶¨ÒåÏß³Ìº¯ÊıÈë¿Ú */
+/* å®šä¹‰çº¿ç¨‹å‡½æ•°å…¥å£ */
 void led0_thread_entry(void* parameter)
 {
 	while(1){
@@ -23,28 +23,29 @@ void led1_thread_entry(void* parameter)
 		rt_thread_delay(50);
 	}
 }
-/* ÔËĞĞLEDÏß³Ì */
+/* è¿è¡ŒLEDçº¿ç¨‹ */
 void run_led(void)
 {
 	led0_thread = rt_thread_create(
-		"led0",             /* Ïß³ÌÃû³Æ */
-		led0_thread_entry,  /* Ïß³ÌÈë¿Úº¯Êı */
-		RT_NULL,            /* Ïß³ÌÈë¿Ú²ÎÊı */
-		512,                /* Ïß³ÌÕ»´óĞ¡ */
-		3,                  /* Ïß³ÌÓÅÏÈ¼¶ */
-		20                  /* Ïß³ÌÊ±¼äÆ¬  */
+		"led0",             /* çº¿ç¨‹åç§° */
+		led0_thread_entry,  /* çº¿ç¨‹å…¥å£å‡½æ•° */
+		RT_NULL,            /* çº¿ç¨‹å…¥å£å‚æ•° */
+		512,                /* çº¿ç¨‹æ ˆå¤§å° */
+		3,                  /* çº¿ç¨‹ä¼˜å…ˆçº§ */
+		20                  /* çº¿ç¨‹æ—¶é—´ç‰‡  */
 	);
-	if(led0_thread != RT_NULL)
-		rt_thread_startup(led0_thread);
+	if(led0_thread != RT_NULL)  /* è‹¥åˆ›å»ºçº¿ç¨‹æˆåŠŸï¼Œåˆ™è¿è¡Œçº¿ç¨‹ */
+		rt_thread_startup(led0_thread);  
+	
 	led1_thread = rt_thread_create(
-		"led1",             /* Ïß³ÌÃû³Æ */
-		led1_thread_entry,  /* Ïß³ÌÈë¿Úº¯Êı */
-		RT_NULL,            /* Ïß³ÌÈë¿Ú²ÎÊı */
-		512,                /* Ïß³ÌÕ»´óĞ¡ */
-		3,                  /* Ïß³ÌÓÅÏÈ¼¶ */
-		20                  /* Ïß³ÌÊ±¼äÆ¬  */
+		"led1",             /* çº¿ç¨‹åç§° */
+		led1_thread_entry,  /* çº¿ç¨‹å…¥å£å‡½æ•° */
+		RT_NULL,            /* çº¿ç¨‹å…¥å£å‚æ•° */
+		512,                /* çº¿ç¨‹æ ˆå¤§å° */
+		3,                  /* çº¿ç¨‹ä¼˜å…ˆçº§ */
+		20                  /* çº¿ç¨‹æ—¶é—´ç‰‡  */
 	);
-	if(led1_thread != RT_NULL)
+	if(led1_thread != RT_NULL)  /* è‹¥åˆ›å»ºçº¿ç¨‹æˆåŠŸï¼Œåˆ™è¿è¡Œçº¿ç¨‹ */
 		rt_thread_startup(led1_thread);
 	
 }
